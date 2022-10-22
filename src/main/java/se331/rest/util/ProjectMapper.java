@@ -3,6 +3,7 @@ package se331.rest.util;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import se331.rest.DTO.VaccineDTO;
 import se331.rest.security.dto.DoctorAuthDTO;
 import se331.rest.DTO.DoctorDTO;
 import se331.rest.DTO.PatientDTO;
@@ -18,16 +19,17 @@ import java.util.stream.Collectors;
 public interface ProjectMapper {
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
 
-    PatientDTO getPatientDto(Patient patient);
+    PatientDTO getPatientDTO(Patient patient);
 
     UserDTO getUserDTO(User user);
 
-    List<PatientDTO> getPatientDto(List<Patient> patients);
+    List<PatientDTO> getPatientDTO(List<Patient> patients);
 
-    DoctorDTO getDoctorDTO(Doctor organizer);
+    DoctorDTO getDoctorDTO(Doctor doctor);
 
-    List<DoctorDTO> getDoctorDTO(List<Doctor> organizers);
+    List<DoctorDTO> getDoctorDTO(List<Doctor> doctors);
+    VaccineDTO getVaccineDTO(Vaccine vaccine);
 
-    @Mapping(target = "authorities", expression = "java(organizer.getUser().getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
-    DoctorAuthDTO getDoctorAuthDTO(Doctor organizer);
+    @Mapping(target = "authorities", expression = "java(doctor.getUser().getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
+    DoctorAuthDTO getDoctorAuthDTO(Doctor doctor);
 }
