@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Patient;
+import se331.rest.service.PatientService;
 import se331.rest.util.ProjectMapper;
 
 @Controller

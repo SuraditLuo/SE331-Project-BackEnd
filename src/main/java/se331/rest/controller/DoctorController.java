@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Doctor;
+import se331.rest.entity.Patient;
+import se331.rest.service.DoctorService;
 import se331.rest.util.ProjectMapper;
 
 @Controller
@@ -39,5 +41,11 @@ public class DoctorController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
+    }
+
+    @PostMapping("/doctor")
+    public ResponseEntity<?> addComment(@RequestBody Doctor doctor) {
+        Doctor output = doctorService.save(doctor);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getDoctorDTO(output));
     }
 }

@@ -17,7 +17,7 @@ public class Vaccine {
     @EqualsAndHashCode.Exclude
     Long id;
     String vaccineName;
-    @ManyToMany
+    @ManyToMany(mappedBy = "listOfDose")
     List<Patient> patients;
 
 }

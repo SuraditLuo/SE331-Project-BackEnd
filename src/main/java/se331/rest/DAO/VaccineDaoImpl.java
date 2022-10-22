@@ -20,7 +20,6 @@ public class VaccineDaoImpl implements VaccineDao{
     }
 
     @Override
-
     public Optional<Vaccine> findById(Long id) {
         return vaccineRepository.findById(id);
 

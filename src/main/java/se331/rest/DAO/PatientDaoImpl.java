@@ -6,8 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
 import se331.rest.repository.PatientRepository;
+
+import java.util.Optional;
 
 @Repository
 public class PatientDaoImpl implements PatientDao{
@@ -36,5 +39,11 @@ public class PatientDaoImpl implements PatientDao{
     @Override
     public Page<Patient> getPatients(String name, Pageable page) {
         return patientRepository.findByNameIgnoreCaseContainingOrSurnameIgnoreCaseContainingOrDoctor_NameIgnoreCaseContaining(name,name,name,page);
+    }
+
+    @Override
+    public Optional<Patient> findById(Long id) {
+        return patientRepository.findById(id);
+
     }
 }

@@ -30,6 +30,8 @@ public interface ProjectMapper {
     List<DoctorDTO> getDoctorDTO(List<Doctor> doctors);
     VaccineDTO getVaccineDTO(Vaccine vaccine);
 
+    List<VaccineDTO> getVaccineDTO(List<Vaccine> vaccines);
+
     @Mapping(target = "authorities", expression = "java(doctor.getUser().getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
     DoctorAuthDTO getDoctorAuthDTO(Doctor doctor);
 }
