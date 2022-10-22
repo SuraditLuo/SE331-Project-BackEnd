@@ -3,9 +3,12 @@ package se331.rest.util;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import se331.rest.security.dto.DoctorAuthDTO;
+import se331.rest.DTO.DoctorDTO;
+import se331.rest.DTO.PatientDTO;
 import se331.rest.entity.*;
 import se331.rest.security.entity.User;
-import se331.rest.security.entity.UserDTO;
+import se331.rest.security.dto.UserDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

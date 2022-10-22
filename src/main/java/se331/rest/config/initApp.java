@@ -52,11 +52,11 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .vaccineName("Johnson & Johnson").build());
         Doctor d1, d2, d3;
         d1 = doctorRepository.save(Doctor.builder()
-                .name("Dr. James").build());
+                .name("James").build());
         d2 = doctorRepository.save(Doctor.builder()
-                .name("Dr. Thomas").build());
+                .name("Thomas").build());
         d3 = doctorRepository.save(Doctor.builder()
-                .name("Dr. David").build());
+                .name("David").build());
         Patient tempPatient = null;
         tempPatient = patientRepository.save(Patient.builder()
                 .name("Suradit")
