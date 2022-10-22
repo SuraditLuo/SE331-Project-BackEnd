@@ -1,4 +1,4 @@
-package se331.rest.security.config.controller;
+package se331.rest.security.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import se331.rest.security.repository.AuthorityRepository;
 import se331.rest.security.repository.UserRepository;
 import se331.rest.security.service.UserService;
 import se331.rest.security.util.JwtTokenUtil;
-import se331.rest.util.LabMapper;
+import se331.rest.util.ProjectMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -77,7 +77,7 @@ public class AuthenticationRestController {
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
         if (user.getDoctor() != null) {
-            result.put("user", LabMapper.INSTANCE.getDoctorAuthDTO( user.getDoctor()));
+            result.put("user", ProjectMapper.INSTANCE.getDoctorAuthDTO( user.getDoctor()));
         }
 
         return ResponseEntity.ok(result);
@@ -85,8 +85,8 @@ public class AuthenticationRestController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) throws  AuthenticationException{
         PasswordEncoder encoder = new BCryptPasswordEncoder();
-        Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
-        authorityRepository.save(authAdmin);
+        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        authorityRepository.save(authUser);
         User user2 = User.builder()
                 .enabled(true)
                 .email(user.getEmail())
@@ -98,7 +98,7 @@ public class AuthenticationRestController {
                         .atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
 
-        user2.getAuthorities().add(authAdmin);
+        user2.getAuthorities().add(authUser);
         userRepository.save(user2);
 
         Doctor doctor = Doctor.builder().name(user.getUsername()).build();
@@ -108,7 +108,7 @@ public class AuthenticationRestController {
         user2.setDoctor(doctor);
 
         userService.save(user2);
-        return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(user2));
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(user2));
     }
     @GetMapping(value = "${jwt.route.authentication.refresh}")
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {

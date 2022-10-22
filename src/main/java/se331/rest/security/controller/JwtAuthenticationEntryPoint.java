@@ -1,4 +1,4 @@
-package se331.rest.security.config.controller;
+package se331.rest.security.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;

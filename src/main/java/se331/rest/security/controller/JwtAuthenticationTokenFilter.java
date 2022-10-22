@@ -1,4 +1,4 @@
-package se331.rest.security.config.controller;
+package se331.rest.security.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;

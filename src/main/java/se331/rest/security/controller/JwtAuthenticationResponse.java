@@ -1,4 +1,4 @@
-package se331.rest.security.config.controller;
+package se331.rest.security.controller;
 
 import java.io.Serializable;
 

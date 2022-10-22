@@ -19,8 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
-import se331.rest.security.config.controller.JwtAuthenticationEntryPoint;
-import se331.rest.security.config.controller.JwtAuthenticationTokenFilter;
+import se331.rest.security.controller.JwtAuthenticationEntryPoint;
+import se331.rest.security.controller.JwtAuthenticationTokenFilter;
 
 
 @Configuration
@@ -39,27 +39,19 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .authorizeRequests()
-                .antMatchers("/auth/**",  "/refresh", "/register").permitAll()
-                .antMatchers(HttpMethod.GET,"/event").permitAll()
-                .antMatchers(HttpMethod.GET,"/organizers").permitAll()
+                .antMatchers("/auth/**",  "/refresh", "/register", "/assign").permitAll()
+                .antMatchers(HttpMethod.GET,"/patient").permitAll()
+                .antMatchers(HttpMethod.GET,"/doctors").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/event").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/patient").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/doctor").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/vaccine").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
         log.info("security filter chain set");
         return http.build();
     }
-
-
-
-//    @Bean
-//    ServerHttpSecurity serverHttpSecurity() {
-//
-//        return ServerHttpSecurity.http();
-//    }
-
-
 
     @SneakyThrows
     @Bean
