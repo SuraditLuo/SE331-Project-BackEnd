@@ -49,7 +49,7 @@ public class PatientController {
     }
 
     @PostMapping("/patient")
-    public ResponseEntity<?> addPatient(@RequestBody Patient patient) {
+    public ResponseEntity<?> addPatient(@RequestBody Patient patient) throws IndexOutOfBoundsException {
         Patient output = patientService.save(patient);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getPatientDTO(output));
     }

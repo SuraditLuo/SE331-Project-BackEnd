@@ -41,15 +41,15 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         Vaccine v1, v2, v3, v4, v5;
         v1 = vaccineRepository.save(Vaccine.builder()
-                .vaccineName("SinoPharm").build());
+                .name("SinoPharm").build());
         v2 = vaccineRepository.save(Vaccine.builder()
-                .vaccineName("Pfizer").build());
+                .name("Pfizer").build());
         v3 = vaccineRepository.save(Vaccine.builder()
-                .vaccineName("Astra zeneca").build());
+                .name("Astra zeneca").build());
         v4 = vaccineRepository.save(Vaccine.builder()
-                .vaccineName("Moderna").build());
+                .name("Moderna").build());
         v5 = vaccineRepository.save(Vaccine.builder()
-                .vaccineName("Johnson & Johnson").build());
+                .name("Johnson & Johnson").build());
         Doctor d1, d2, d3;
         d1 = doctorRepository.save(Doctor.builder()
                 .name("James").build());
