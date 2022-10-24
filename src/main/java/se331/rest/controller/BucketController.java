@@ -17,6 +17,6 @@ public class BucketController {
     CloudStorageHelper cloudStorageHelper;
     @PostMapping("/uploadFile")
     public ResponseEntity<?> uploadFile(@RequestPart(value = "file") MultipartFile file) throws IOException, ServletException {
-        return ResponseEntity.ok(this.cloudStorageHelper.getImageUrl(file,"project-image-storage.appspot.com.com"));
+        return ResponseEntity.ok(this.cloudStorageHelper.getImageUrl(file,"imageupload-d9786.appspot.com"));
     }
 }

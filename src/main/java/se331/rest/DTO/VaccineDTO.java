@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class VaccineDTO {
     Long id;
-    String vaccineName;
+    String name;
     List<VaccinePatientDTO> patients;
 }

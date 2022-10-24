@@ -16,7 +16,7 @@ public class Vaccine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String vaccineName;
+    String name;
     @ManyToMany(mappedBy = "listOfDose")
     List<Patient> patients;
 
