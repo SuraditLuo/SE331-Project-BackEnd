@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +21,7 @@ public class PatientDTO {
     String hometown;
     String status;
     PatientDoctorDTO doctor;
-    List<PatientVaccineDTO> vaccine;
+    List<PatientVaccineDTO> vaccines;
     List<String> DComment;
     List<String> imgUrls;
 }
