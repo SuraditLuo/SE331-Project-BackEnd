@@ -65,8 +65,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .hometown("Chiang Rai")
                 .status("already get second dose")
                 .build());
-        tempPatient.getListOfDose().add(v2);
-        tempPatient.getListOfDose().add(v3);
+        v2.getPatients().add(tempPatient);
+        v2.getPatients().add(tempPatient);
         d2.getInCharge().add(tempPatient);
         tempPatient.setDoctor(d2);
         tempPatient = patientRepository.save(Patient.builder()
@@ -76,8 +76,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .hometown("BeiJing")
                 .status("already get second dose")
                 .build());
-        tempPatient.getListOfDose().add(v3);
-        tempPatient.getListOfDose().add(v5);
+        v3.getPatients().add(tempPatient);
+        v5.getPatients().add(tempPatient);
         d1.getInCharge().add(tempPatient);
         tempPatient.setDoctor(d1);
         addUser();
