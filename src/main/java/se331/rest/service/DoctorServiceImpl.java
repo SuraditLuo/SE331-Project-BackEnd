@@ -16,6 +16,8 @@ import javax.transaction.Transactional;
 public class DoctorServiceImpl implements DoctorService{
     @Autowired
     DoctorDao doctorDao;
+    @Autowired
+    PatientDao patientDao;
     @Override
     public Integer getDoctorSize() {
         return doctorDao.getDoctorSize();

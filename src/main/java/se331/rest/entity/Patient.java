@@ -26,9 +26,8 @@ public class Patient {
     List<String> DComment = new ArrayList<>();
     @ManyToOne
     Doctor doctor;
-    @ManyToMany
-    @Builder.Default
-    List<Vaccine> vaccines = new ArrayList<>();
+    @ManyToMany(mappedBy = "patients")
+    List<Vaccine> vaccines;
     @ElementCollection
     List<String> imageUrls;
 
