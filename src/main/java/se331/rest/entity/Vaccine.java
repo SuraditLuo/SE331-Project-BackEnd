@@ -17,8 +17,5 @@ public class Vaccine {
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
-    @ManyToMany
-    @Builder.Default
-    List<Patient> patients = new ArrayList<>();
 
 }
