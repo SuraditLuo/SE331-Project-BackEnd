@@ -15,5 +15,4 @@ import java.util.List;
 public class VaccineDTO {
     Long id;
     String name;
-    List<VaccinePatientDTO> patients = new ArrayList<>();
 }
