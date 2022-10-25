@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import se331.rest.entity.Doctor;
+import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorRepository;
 import se331.rest.security.entity.Authority;
 import se331.rest.security.entity.AuthorityName;
@@ -123,6 +124,9 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
-
+    @PostMapping("/changeRole")
+    public ResponseEntity<?> changeRole(@RequestBody User user) {
+        User output = userService.saveRole(user);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
+    }
 }

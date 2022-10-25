@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import se331.rest.entity.Comment;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
+import se331.rest.service.CommentService;
 import se331.rest.service.DoctorService;
 import se331.rest.util.ProjectMapper;
 
@@ -17,6 +19,8 @@ import se331.rest.util.ProjectMapper;
 public class DoctorController {
     @Autowired
     DoctorService doctorService;
+    @Autowired
+    CommentService commentService;
 
     @GetMapping("doctor")
     public ResponseEntity<?> getDoctorLists(@RequestParam(value = "_limit", required = false) Integer perPage
@@ -43,9 +47,13 @@ public class DoctorController {
         }
     }
 
-    @PostMapping("/doctor")
-    public ResponseEntity<?> addComment(@RequestBody Doctor doctor) {
-        Doctor output = doctorService.save(doctor);
-        return ResponseEntity.ok(ProjectMapper.INSTANCE.getDoctorDTO(output));
+    @PostMapping("/comment")
+    public ResponseEntity<?> addComment(@RequestBody Comment comment) throws IndexOutOfBoundsException {
+        Comment output = commentService.save(comment);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getCommentDTO(output));
+    }
+    @GetMapping("/comments")
+    ResponseEntity<?> getComments() {
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getCommentDTO(commentService.getAllComment()));
     }
 }

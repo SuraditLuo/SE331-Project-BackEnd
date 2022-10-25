@@ -22,8 +22,6 @@ public class Patient {
     String age;
     String hometown;
     String status;
-    @ElementCollection
-    List<String> DComment = new ArrayList<>();
     @ManyToOne
     Doctor doctor;
     @ManyToMany

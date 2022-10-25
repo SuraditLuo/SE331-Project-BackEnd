@@ -4,4 +4,6 @@ import se331.rest.security.entity.User;
 
 public interface UserService {
     User save(User user);
+
+    User saveRole(User user);
 }
