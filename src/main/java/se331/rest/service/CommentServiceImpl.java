@@ -33,6 +33,7 @@ public class CommentServiceImpl implements CommentService {
         Patient patient = patientDao.findById(comment.getCommentTo().getId()).orElse(null);
         comment.setCommentBy(doctor);
         comment.setCommentTo(patient);
+        patient.getComments().add(comment);
         return commentDao.save(comment);
     }
 

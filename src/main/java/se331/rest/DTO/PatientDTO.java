@@ -21,6 +21,7 @@ public class PatientDTO {
     String hometown;
     String status;
     PatientDoctorDTO doctor;
+    List<PatientCommentDTO> comments;
     List<PatientVaccineDTO> vaccines;
     List<String> imgUrls;
 }
