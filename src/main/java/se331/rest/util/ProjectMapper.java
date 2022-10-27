@@ -24,6 +24,8 @@ public interface ProjectMapper {
 
     UserDTO getUserDTO(User user);
 
+    List<UserDTO> getUserDTO(List<User> users);
+
     List<PatientDTO> getPatientDTO(List<Patient> patients);
 
     DoctorDTO getDoctorDTO(Doctor doctor);

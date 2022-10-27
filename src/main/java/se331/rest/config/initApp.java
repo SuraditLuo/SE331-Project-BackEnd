@@ -53,8 +53,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         Doctor d1, d2, d3;
         d1 = doctorRepository.save(Doctor.builder()
                 .name("James").build());
-        d2 = doctorRepository.save(Doctor.builder()
-                .name("Thomas").build());
         d3 = doctorRepository.save(Doctor.builder()
                 .name("David").build());
         Patient tempPatient = null;
@@ -67,8 +65,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build());
         tempPatient.getVaccines().add(v2);
         tempPatient.getVaccines().add(v2);
-        d2.getInCharge().add(tempPatient);
-        tempPatient.setDoctor(d2);
+        d3.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d3);
         tempPatient = patientRepository.save(Patient.builder()
                 .name("Jack")
                 .surname("Ma")
@@ -83,8 +81,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         addUser();
         d1.setUser(user1);
         user1.setDoctor(d1);
-        d2.setUser(user2);
-        user2.setDoctor(d2);
         d3.setUser(user3);
         user3.setDoctor(d3);
     }

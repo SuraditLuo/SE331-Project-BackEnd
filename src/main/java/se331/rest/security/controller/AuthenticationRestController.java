@@ -3,6 +3,9 @@ package se331.rest.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -128,5 +131,18 @@ public class AuthenticationRestController {
     public ResponseEntity<?> changeRole(@RequestBody User user) {
         User output = userService.saveRole(user);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
+    }
+
+    @GetMapping("user")
+    public ResponseEntity<?> getUserLists(@RequestParam(value = "_limit", required = false) Integer perPage
+            , @RequestParam(value = "_page", required = false) Integer page) {
+        perPage = perPage == null ? 3 : perPage;
+        page = page == null ? 1 : page;
+        Page<User> pageOutput;
+        pageOutput = userService.getUsers(perPage, page);
+        HttpHeaders responseHeader = new HttpHeaders();
+
+        responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
+        return new ResponseEntity<>(ProjectMapper.INSTANCE.getUserDTO(pageOutput.getContent()), responseHeader, HttpStatus.OK);
     }
 }
