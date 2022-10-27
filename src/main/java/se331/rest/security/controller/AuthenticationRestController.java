@@ -136,7 +136,7 @@ public class AuthenticationRestController {
     @GetMapping("user")
     public ResponseEntity<?> getUserLists(@RequestParam(value = "_limit", required = false) Integer perPage
             , @RequestParam(value = "_page", required = false) Integer page) {
-        perPage = perPage == null ? 3 : perPage;
+        perPage = perPage == null ? 10 : perPage;
         page = page == null ? 1 : page;
         Page<User> pageOutput;
         pageOutput = userService.getUsers(perPage, page);

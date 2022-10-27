@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     DoctorRepository doctorRepository;
     @Override
+    @Transactional
     public User save(User user) {
         return userDao.save(user);
     }
