@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST,"/patient").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/doctor").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/vaccine").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/comment").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);

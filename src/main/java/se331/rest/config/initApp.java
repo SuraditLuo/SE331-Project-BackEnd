@@ -134,6 +134,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         authorityRepository.save(authDoctor);
         user1.getAuthorities().add(authUser);
         user1.getAuthorities().add(authAdmin);
+        user1.getAuthorities().add(authDoctor);
         user2.getAuthorities().add(authUser);
         user3.getAuthorities().add(authUser);
         user3.getAuthorities().add(authDoctor);
