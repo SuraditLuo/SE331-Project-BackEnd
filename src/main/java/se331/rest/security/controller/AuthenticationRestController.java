@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorRepository;
+import se331.rest.security.dao.AuthorityDao;
+import se331.rest.security.dao.UserDao;
 import se331.rest.security.entity.Authority;
 import se331.rest.security.entity.AuthorityName;
 import se331.rest.security.entity.JwtUser;
@@ -61,6 +63,10 @@ public class AuthenticationRestController {
     DoctorRepository doctorRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    UserDao userDao;
+    @Autowired
+    AuthorityDao authorityDao;
 
     @PostMapping("${jwt.route.authentication.path}")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
@@ -80,8 +86,8 @@ public class AuthenticationRestController {
         Map result = new HashMap();
         result.put("token", token);
         User user = userRepository.findById(((JwtUser) userDetails).getId()).orElse(null);
-        if (user.getDoctor() != null) {
-            result.put("user", ProjectMapper.INSTANCE.getDoctorAuthDTO( user.getDoctor()));
+        if (user != null) {
+            result.put("user", ProjectMapper.INSTANCE.getUserAuthDTO(user));
         }
 
         return ResponseEntity.ok(result);
@@ -89,7 +95,7 @@ public class AuthenticationRestController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) throws  AuthenticationException{
         PasswordEncoder encoder = new BCryptPasswordEncoder();
-        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority authUser = authorityDao.getAuthority(01L);
         authorityRepository.save(authUser);
         User user2 = User.builder()
                 .enabled(true)
@@ -103,14 +109,9 @@ public class AuthenticationRestController {
                 .build();
 
         user2.getAuthorities().add(authUser);
+        authUser.getUsers().add(user2);
+
         userRepository.save(user2);
-
-        Doctor doctor = Doctor.builder().name(user.getUsername()).build();
-        doctorRepository.save(doctor);
-
-        doctor.setUser(user2);
-        user2.setDoctor(doctor);
-
         userService.save(user2);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(user2));
     }

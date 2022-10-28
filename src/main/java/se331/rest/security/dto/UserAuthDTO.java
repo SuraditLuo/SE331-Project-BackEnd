@@ -11,8 +11,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorAuthDTO {
+public class UserAuthDTO {
     Long id;
-    String name;
+    String username;
     List<String> authorities;
 }

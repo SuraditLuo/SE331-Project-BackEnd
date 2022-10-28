@@ -52,16 +52,16 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .name("Johnson & Johnson").build());
         Doctor d1, d2, d3;
         d1 = doctorRepository.save(Doctor.builder()
-                .name("James").build());
+                .name("admin").build());
         d3 = doctorRepository.save(Doctor.builder()
-                .name("David").build());
+                .name("doctor").build());
         Patient tempPatient = null;
         tempPatient = patientRepository.save(Patient.builder()
                 .name("Suradit")
                 .surname("Luo")
                 .age("20")
                 .hometown("Chiang Rai")
-                .status("already get second dose")
+                .status("already get second doses")
                 .build());
         tempPatient.getVaccines().add(v2);
         tempPatient.getVaccines().add(v2);
@@ -72,7 +72,7 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .surname("Ma")
                 .age("56")
                 .hometown("BeiJing")
-                .status("already get second dose")
+                .status("already get second doses")
                 .build());
         tempPatient.getVaccines().add(v3);
         tempPatient.getVaccines().add(v5);
