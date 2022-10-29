@@ -19,7 +19,7 @@ public class Se331BackEndProjectApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000","http://44.210.214.188:8001/")
+                        .allowedOrigins("http://localhost:3000","http://44.210.214.188:8001")
                         .exposedHeaders("x-total-count");
 
             }
