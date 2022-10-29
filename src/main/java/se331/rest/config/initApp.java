@@ -78,6 +78,37 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         tempPatient.getVaccines().add(v5);
         d1.getInCharge().add(tempPatient);
         tempPatient.setDoctor(d1);
+        tempPatient = patientRepository.save(Patient.builder()
+                .name("Thomas")
+                .surname("Wayne")
+                .age("40")
+                .hometown("Gotham")
+                .status("get only one dose")
+                .build());
+        tempPatient.getVaccines().add(v5);
+        d3.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d3);
+        tempPatient = patientRepository.save(Patient.builder()
+                .name("Walter")
+                .surname("White")
+                .age("46")
+                .hometown("USA")
+                .status("get only one dose")
+                .build());
+        tempPatient.getVaccines().add(v2);
+        d3.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d3);
+        tempPatient = patientRepository.save(Patient.builder()
+                .name("Skyler")
+                .surname("White")
+                .age("42")
+                .hometown("USA")
+                .status("already get second doses")
+                .build());
+        tempPatient.getVaccines().add(v4);
+        tempPatient.getVaccines().add(v4);
+        d1.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d1);
         addUser();
         d1.setUser(user1);
         user1.setDoctor(d1);

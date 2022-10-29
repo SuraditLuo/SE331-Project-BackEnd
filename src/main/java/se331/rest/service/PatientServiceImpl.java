@@ -43,7 +43,6 @@ public class PatientServiceImpl implements PatientService{
     @Transactional
     public Patient save(Patient patient) {
         Doctor doctor = doctorDao.findById(patient.getDoctor().getId()).orElse(null);
-
         patient.setDoctor(doctor);
         doctor.getInCharge().add(patient);
         return patientDao.save(patient);
