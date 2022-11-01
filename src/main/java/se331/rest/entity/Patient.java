@@ -20,7 +20,7 @@ public class Patient {
     Long id;
     String firstname;
     String lastname;
-    int age;
+    String age;
     String address;
     String status;
     @ManyToOne
@@ -33,7 +33,7 @@ public class Patient {
     List<Vaccine> vaccines = new ArrayList<>();
     @ElementCollection
     List<String> imageUrls;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     User user;
 
 }

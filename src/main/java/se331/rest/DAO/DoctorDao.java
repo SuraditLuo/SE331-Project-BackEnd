@@ -12,6 +12,6 @@ public interface DoctorDao {
     Doctor getDoctors(Long id);
 
     Doctor save(Doctor doctor);
-    Page<Doctor> getDoctors(String name, Pageable page);
+    /*Page<Doctor> getDoctors(String name, Pageable page);*/
     Optional<Doctor> findById(Long id);
 }

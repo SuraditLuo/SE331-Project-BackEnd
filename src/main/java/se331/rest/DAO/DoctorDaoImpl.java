@@ -36,10 +36,10 @@ public class DoctorDaoImpl implements DoctorDao{
         return doctorRepository.save(doctor);
     }
 
-    @Override
+    /*@Override
     public Page<Doctor> getDoctors(String name, Pageable page) {
-        return doctorRepository.findByPatient_FirstnameIgnoreCaseContainingOrPatient_LastnameIgnoreCaseContaining(name, name, page);
-    }
+        return doctorRepository.findByInCharge_Patient_FirstnameIgnoreCaseContainingOrInCharge_Patient_LastnameIgnoreCaseContaining(name, name, page);
+    }*/
 
     @Override
     public Optional<Doctor> findById(Long id) {

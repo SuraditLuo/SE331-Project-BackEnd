@@ -130,15 +130,21 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    @PostMapping("/addDoctorRole")
+    @PostMapping("/add-doctor-role")
     public ResponseEntity<?> addDoctorRole(@RequestBody User user) {
         User output = userService.saveDoctorRole(user);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
     }
 
-    @PostMapping("/addPatientRole")
+    @PostMapping("/add-patient-role")
     public ResponseEntity<?> addPatientRole(@RequestBody User user) {
         User output = userService.savePatientRole(user);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
+    }
+
+    @PostMapping("/remove-doctor-role")
+    public ResponseEntity<?> removeDoctor(@RequestBody User user) {
+        User output = userService.removeDoctor(user);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
     }
 

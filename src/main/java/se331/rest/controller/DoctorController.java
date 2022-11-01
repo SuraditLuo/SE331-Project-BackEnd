@@ -25,16 +25,16 @@ public class DoctorController {
 
     @GetMapping("doctor")
     public ResponseEntity<?> getDoctorLists(@RequestParam(value = "_limit", required = false) Integer perPage
-            , @RequestParam(value = "_page", required = false) Integer page
-            , @RequestParam(value = "name", required = false) String name) {
+            , @RequestParam(value = "_page", required = false) Integer page)
+            /*, @RequestParam(value = "name", required = false) String name)*/ {
         perPage = perPage == null ? 3 : perPage;
         page = page == null ? 1 : page;
         Page<Doctor> pageOutput;
-        if (name == null) {
+        /*if (name == null) {*/
             pageOutput = doctorService.getDoctors(perPage, page);
-        } else {
+        /*} else {
             pageOutput = doctorService.getDoctors(name, PageRequest.of(page - 1, perPage));
-        }
+        }*/
         HttpHeaders responseHeader = new HttpHeaders();
 
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));

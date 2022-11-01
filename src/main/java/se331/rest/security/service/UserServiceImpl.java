@@ -77,4 +77,15 @@ public class UserServiceImpl implements UserService{
         p.setUser(user);
         return userDao.save(u);
     }
+
+    @Override
+    @Transactional
+    public User removeDoctor(User user) {
+        Authority authority = authorityDao.getAuthority(01L);
+        User u = userDao.findById(user.getId()).orElse(null);
+        u.getDoctor().getInCharge().clear();
+        u.getAuthorities().clear();
+        u.getAuthorities().add(authority);
+        return userDao.save(u);
+    }
 }

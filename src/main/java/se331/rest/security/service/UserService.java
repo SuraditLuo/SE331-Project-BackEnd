@@ -13,4 +13,5 @@ public interface UserService {
     User saveDoctorRole(User user);
 
     User savePatientRole(User user);
+    User removeDoctor(User user);
 }

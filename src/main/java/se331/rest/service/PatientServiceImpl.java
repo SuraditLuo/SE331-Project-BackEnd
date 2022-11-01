@@ -41,11 +41,19 @@ public class PatientServiceImpl implements PatientService{
 
     @Override
     @Transactional
-    public Patient save(Patient patient) {
+    public Patient saveDoctor(Patient patient) {
+        Patient p = patientDao.findById(patient.getId()).orElse(null);
         Doctor doctor = doctorDao.findById(patient.getDoctor().getId()).orElse(null);
-        patient.setDoctor(doctor);
-        doctor.getInCharge().add(patient);
-        return patientDao.save(patient);
+        p.setDoctor(doctor);
+        doctor.getInCharge().add(p);
+        return patientDao.save(p);
+    }
+
+    @Override
+    @Transactional
+    public Patient saveVaccine(Patient patient) {
+        Patient p = patientDao.findById(patient.getId()).orElse(null);
+        return patientDao.save(p);
     }
 
     @Override

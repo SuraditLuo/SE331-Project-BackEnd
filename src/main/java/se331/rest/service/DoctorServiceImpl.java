@@ -38,8 +38,8 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorDao.save(doctor);
     }
 
-    @Override
+    /*@Override
     public Page<Doctor> getDoctors(String name, Pageable pageable) {
         return doctorDao.getDoctors(name,pageable);
-    }
+    }*/
 }

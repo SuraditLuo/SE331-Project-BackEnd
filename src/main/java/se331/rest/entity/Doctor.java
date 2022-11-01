@@ -24,6 +24,6 @@ public class Doctor {
     List<Patient> inCharge = new ArrayList<>();
     @ElementCollection
     List<String> imageUrls;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     User user;
 }

@@ -56,7 +56,7 @@ public class User {
 
     @Column(name = "AGE")
     @NotNull
-    private int age;
+    private String age;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -72,8 +72,8 @@ public class User {
     private List<Authority> authorities = new ArrayList<>();
     @ElementCollection
     List<String> imageUrls;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     Doctor doctor;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     Patient patient;
 }

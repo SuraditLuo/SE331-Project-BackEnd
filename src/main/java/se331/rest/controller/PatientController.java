@@ -48,9 +48,14 @@ public class PatientController {
         }
     }
 
-    @PostMapping("/patient")
-    public ResponseEntity<?> addPatient(@RequestBody Patient patient) throws IndexOutOfBoundsException {
-        Patient output = patientService.save(patient);
+    @PostMapping("/save-doctor")
+    public ResponseEntity<?> addDoctor(@RequestBody Patient patient) throws IndexOutOfBoundsException {
+        Patient output = patientService.saveDoctor(patient);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getPatientDTO(output));
+    }
+    @PostMapping("/save-vaccine")
+    public ResponseEntity<?> addVaccine(@RequestBody Patient patient) throws IndexOutOfBoundsException {
+        Patient output = patientService.saveVaccine(patient);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getPatientDTO(output));
     }
 }

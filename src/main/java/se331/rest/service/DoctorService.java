@@ -13,5 +13,5 @@ public interface DoctorService {
     Doctor getDoctor(Long id);
 
     Doctor save(Doctor doctor);
-    Page<Doctor> getDoctors(String name, Pageable pageable);
+    /*Page<Doctor> getDoctors(String name, Pageable pageable);*/
 }

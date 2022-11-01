@@ -10,6 +10,8 @@ public interface PatientService {
     Page<Patient> getPatients(Integer pageSize, Integer page);
 
     Patient getPatient(Long id);
-    Patient save(Patient patient);
+    Patient saveDoctor(Patient patient);
     Page<Patient> getPatients(String name, Pageable pageable);
+
+    Patient saveVaccine(Patient patient);
 }
