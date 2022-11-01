@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class DoctorDTO {
     Long id;
-    String name;
+    String firstname;
+    String lastname;
     List<DoctorChargePatientsDTO> inCharge = new ArrayList<>();
 
 }

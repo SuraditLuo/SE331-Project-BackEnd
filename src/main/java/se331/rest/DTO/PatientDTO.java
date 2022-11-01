@@ -15,10 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientDTO {
     Long id;
-    String name;
-    String surname;
+    String firstname;
+    String lastname;
     String age;
-    String hometown;
+    String address;
     String status;
     PatientDoctorDTO doctor;
     List<PatientCommentDTO> comments;

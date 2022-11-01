@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorRepository;
+import se331.rest.repository.PatientRepository;
 import se331.rest.security.dao.AuthorityDao;
 import se331.rest.security.dao.UserDao;
 import se331.rest.security.entity.Authority;
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService{
     AuthorityDao authorityDao;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    PatientRepository patientRepository;
     @Override
     @Transactional
     public User save(User user) {
@@ -39,16 +42,39 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public User saveRole(User user) {
+    public User saveDoctorRole(User user) {
         Authority authority = authorityDao.getAuthority(03L);
         User u = userDao.findById(user.getId()).orElse(null);
         Doctor d = doctorRepository.save(Doctor.builder()
-                .name(u.getUsername()).build());
+                .firstname(u.getFirstname())
+                .lastname(u.getLastname())
+                .build());
         u.getAuthorities().add(authority);
+        d.getImageUrls().add(u.getImageUrls().get(0));
         authority.getUsers().add(u);
 
         u.setDoctor(d);
         d.setUser(user);
+        return userDao.save(u);
+    }
+
+    @Override
+    @Transactional
+    public User savePatientRole(User user) {
+        Authority authority = authorityDao.getAuthority(04L);
+        User u = userDao.findById(user.getId()).orElse(null);
+        Patient p = patientRepository.save(Patient.builder()
+                .firstname(u.getFirstname())
+                .lastname(u.getLastname())
+                .age(u.getAge())
+                .address(u.getAddress())
+                .build());
+        u.getAuthorities().add(authority);
+        p.getImageUrls().add(u.getImageUrls().get(0));
+        authority.getUsers().add(u);
+
+        u.setPatient(p);
+        p.setUser(user);
         return userDao.save(u);
     }
 }

@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class DoctorChargePatientsDTO {
     Long id;
-    String name;
-    String surname;
+    String firstname;
+    String lastname;
     String age;
     String hometown;
     String status;

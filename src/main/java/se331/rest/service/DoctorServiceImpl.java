@@ -2,12 +2,13 @@ package se331.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se331.rest.DAO.DoctorDao;
-import se331.rest.DAO.PatientDao;
+import se331.rest.DAO.DoctorDao;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Doctor;
-import se331.rest.entity.Patient;
+import se331.rest.entity.Doctor;
 import se331.rest.entity.Vaccine;
 
 import javax.transaction.Transactional;
@@ -35,5 +36,10 @@ public class DoctorServiceImpl implements DoctorService{
     @Transactional
     public Doctor save(Doctor doctor) {
         return doctorDao.save(doctor);
+    }
+
+    @Override
+    public Page<Doctor> getDoctors(String name, Pageable pageable) {
+        return doctorDao.getDoctors(name,pageable);
     }
 }

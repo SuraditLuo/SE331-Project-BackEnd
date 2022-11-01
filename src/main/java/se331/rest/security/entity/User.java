@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import se331.rest.entity.Doctor;
+import se331.rest.entity.Patient;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class User {
     @NotNull
     private String email;
 
+    @Column(name = "ADDRESS", length = 100)
+    @NotNull
+    private String address;
+
+    @Column(name = "AGE")
+    @NotNull
+    private int age;
+
     @Column(name = "ENABLED")
     @NotNull
     private Boolean enabled;
@@ -61,6 +70,10 @@ public class User {
 	@Builder.Default
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
+    @ElementCollection
+    List<String> imageUrls;
     @OneToOne
     Doctor doctor;
+    @OneToOne
+    Patient patient;
 }

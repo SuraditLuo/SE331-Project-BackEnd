@@ -18,6 +18,8 @@ public class JwtUser implements UserDetails {
     private final String lastname;
     private final String password;
     private final String email;
+    private final int age;
+    private final String address;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
@@ -28,6 +30,8 @@ public class JwtUser implements UserDetails {
             String firstname,
             String lastname,
             String email,
+            String address,
+            int age,
             String password, Collection<? extends GrantedAuthority> authorities,
             boolean enabled,
             Date lastPasswordResetDate
@@ -38,6 +42,8 @@ public class JwtUser implements UserDetails {
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.address = address;
+        this.age = age;
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
@@ -82,6 +88,9 @@ public class JwtUser implements UserDetails {
     public String getEmail() {
         return email;
     }
+
+    public int getAge() { return age; }
+    public String getAddress() { return address; }
 
     @JsonIgnore
     @Override

@@ -100,11 +100,13 @@ public class AuthenticationRestController {
         User user2 = User.builder()
                 .enabled(true)
                 .email(user.getEmail())
-                .firstname("")
-                .lastname("")
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
                 .username(user.getUsername())
+                .age(user.getAge())
+                .address(user.getAddress())
                 .password(encoder.encode(user.getPassword()))
-                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2022,11,02)
                         .atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
 
@@ -128,9 +130,15 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    @PostMapping("/changeRole")
-    public ResponseEntity<?> changeRole(@RequestBody User user) {
-        User output = userService.saveRole(user);
+    @PostMapping("/addDoctorRole")
+    public ResponseEntity<?> addDoctorRole(@RequestBody User user) {
+        User output = userService.saveDoctorRole(user);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
+    }
+
+    @PostMapping("/addPatientRole")
+    public ResponseEntity<?> addPatientRole(@RequestBody User user) {
+        User output = userService.savePatientRole(user);
         return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
     }
 

@@ -17,10 +17,13 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String name;
+    String firstname;
+    String lastname;
     @OneToMany(mappedBy = "doctor")
     @Builder.Default
     List<Patient> inCharge = new ArrayList<>();
+    @ElementCollection
+    List<String> imageUrls;
     @OneToOne
     User user;
 }

@@ -38,7 +38,7 @@ public class PatientDaoImpl implements PatientDao{
 
     @Override
     public Page<Patient> getPatients(String name, Pageable page) {
-        return patientRepository.findByNameIgnoreCaseContainingOrSurnameIgnoreCaseContainingOrDoctor_NameIgnoreCaseContaining(name,name,name,page);
+        return patientRepository.findByFirstnameIgnoreCaseContainingOrLastnameIgnoreCaseContaining(name,name,page);
     }
 
     @Override

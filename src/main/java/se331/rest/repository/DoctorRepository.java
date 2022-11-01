@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface DoctorRepository extends JpaRepository<Doctor,Long>{
     List<Doctor> findAll();
-    Page<Doctor> findByNameIgnoreCaseContaining(String name, Pageable pageRequest);
+    Page<Doctor> findByPatient_FirstnameIgnoreCaseContainingOrPatient_LastnameIgnoreCaseContaining(String firstName, String lastName, Pageable pageRequest);
 
 }

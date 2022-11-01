@@ -1,6 +1,7 @@
 package se331.rest.entity;
 
 import lombok.*;
+import se331.rest.security.entity.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String name;
-    String surname;
-    String age;
-    String hometown;
+    String firstname;
+    String lastname;
+    int age;
+    String address;
     String status;
     @ManyToOne
     Doctor doctor;
@@ -32,5 +33,7 @@ public class Patient {
     List<Vaccine> vaccines = new ArrayList<>();
     @ElementCollection
     List<String> imageUrls;
+    @OneToOne
+    User user;
 
 }

@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CommentPatientDTO {
     Long id;
-    String name;
+    String firstname;
+    String lastname;
 }
