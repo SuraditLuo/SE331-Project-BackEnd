@@ -13,7 +13,7 @@ public class DoctorChargePatientsDTO {
     String firstname;
     String lastname;
     String age;
-    String hometown;
+    String address;
     String status;
 
 }

@@ -452,7 +452,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         user4.getAuthorities().add(authUser);
         user4.getAuthorities().add(authPatient);
         user5.getAuthorities().add(authUser);
-        user5.getAuthorities().add(authPatient);
         user5.getAuthorities().add(authDoctor);
         user6.getAuthorities().add(authUser);
         user6.getAuthorities().add(authPatient);

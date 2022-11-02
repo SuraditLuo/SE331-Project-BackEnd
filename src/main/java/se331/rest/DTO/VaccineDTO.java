@@ -15,4 +15,5 @@ import java.util.List;
 public class VaccineDTO {
     Long id;
     String name;
+
 }

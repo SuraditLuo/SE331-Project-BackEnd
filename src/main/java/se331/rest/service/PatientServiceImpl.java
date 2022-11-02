@@ -53,6 +53,16 @@ public class PatientServiceImpl implements PatientService{
     @Transactional
     public Patient saveVaccine(Patient patient) {
         Patient p = patientDao.findById(patient.getId()).orElse(null);
+        p.setStatus(patient.getStatus());
+        if(patient.getVaccines().size() == 1){
+            Vaccine v = vaccineDao.findById(patient.getVaccines().get(0).getId()).orElse(null);
+            p.getVaccines().add(v);
+        } else if(patient.getVaccines().size() == 2){
+            Vaccine v1 = vaccineDao.findById(patient.getVaccines().get(0).getId()).orElse(null);
+            Vaccine v2 = vaccineDao.findById(patient.getVaccines().get(1).getId()).orElse(null);
+            p.getVaccines().add(v1);
+            p.getVaccines().add(v2);
+        }
         return patientDao.save(p);
     }
 
