@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET,"/vaccines").permitAll()
                 .antMatchers(HttpMethod.GET,"/patient/{id}").hasRole("DOCTOR")
                 .antMatchers(HttpMethod.GET,"/patient/{id}").hasRole("PATIENT")
-                .antMatchers(HttpMethod.GET,"/doctor").permitAll()
+                .antMatchers(HttpMethod.GET,"/doctor").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/user").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/add-patient-role").hasRole("ADMIN")
@@ -59,7 +59,6 @@ public class WebSecurityConfig {
         log.info("security filter chain set");
         return http.build();
     }
-
     @SneakyThrows
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)  {
