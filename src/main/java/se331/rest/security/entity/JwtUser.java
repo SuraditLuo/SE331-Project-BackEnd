@@ -41,9 +41,9 @@ public class JwtUser implements UserDetails {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.password = password;
         this.address = address;
         this.age = age;
+        this.password = password;
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
