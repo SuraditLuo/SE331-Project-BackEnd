@@ -22,8 +22,12 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     @Builder.Default
     List<Patient> inCharge = new ArrayList<>();
-    @ElementCollection
-    List<String> imageUrls;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne
     User user;
+
+    @PreRemove
+    private void preRemove() {
+        user.setDoctor(null);
+        inCharge.forEach(e -> e.setDoctor(null));
+    }
 }

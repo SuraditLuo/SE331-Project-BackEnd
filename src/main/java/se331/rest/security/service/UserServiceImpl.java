@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se331.rest.DAO.DoctorDao;
+import se331.rest.DAO.PatientDao;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorRepository;
@@ -17,6 +18,7 @@ import se331.rest.security.entity.AuthorityName;
 import se331.rest.security.entity.User;
 import se331.rest.security.repository.AuthorityRepository;
 
+import javax.persistence.PreRemove;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService{
     UserDao userDao;
     @Autowired
     DoctorDao doctorDao;
+
+    @Autowired
+    PatientDao patientDao;
     @Autowired
     AuthorityDao authorityDao;
     @Autowired
@@ -51,7 +56,6 @@ public class UserServiceImpl implements UserService{
         Doctor d = doctorRepository.save(Doctor.builder()
                 .firstname(u.getFirstname())
                 .lastname(u.getLastname())
-                .imageUrls(u.getImageUrls())
                 .build());
         u.getAuthorities().add(authority);
         authority.getUsers().add(u);
@@ -71,29 +75,11 @@ public class UserServiceImpl implements UserService{
                 .lastname(u.getLastname())
                 .age(u.getAge())
                 .address(u.getAddress())
-                .imageUrls(u.getImageUrls())
                 .build());
         u.getAuthorities().add(authority);
         authority.getUsers().add(u);
-
         u.setPatient(p);
-        p.setUser(user);
-        return userDao.save(u);
-    }
-
-    @Override
-    @Transactional
-    public User removeDoctor(User user) {
-        Authority authority = authorityDao.getAuthority(01L);
-        User u = userDao.findById(user.getId()).orElse(null);
-        Doctor d = doctorDao.getDoctors(u.getDoctor().getId());
-        u.getDoctor().setInCharge(null);
-        u.setDoctor(null);
-        d.setUser(null);
-        doctorRepository.delete(d);
-        u.getAuthorities().clear();
-        u.getAuthorities().add(authority);
-        doctorDao.save(d);
+        p.setUser(u);
         return userDao.save(u);
     }
 }

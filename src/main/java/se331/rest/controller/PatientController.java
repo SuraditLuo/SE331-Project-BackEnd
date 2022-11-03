@@ -22,7 +22,7 @@ public class PatientController {
     public ResponseEntity<?> getPatientLists(@RequestParam(value = "_limit", required = false) Integer perPage
             , @RequestParam(value = "_page", required = false) Integer page
             , @RequestParam(value = "name", required = false) String name) {
-        perPage = perPage == null ? 3 : perPage;
+        perPage = perPage == null ? 20 : perPage;
         page = page == null ? 1 : page;
         Page<Patient> pageOutput;
         if (name == null) {

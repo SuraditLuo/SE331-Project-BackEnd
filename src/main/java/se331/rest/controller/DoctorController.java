@@ -25,16 +25,11 @@ public class DoctorController {
 
     @GetMapping("doctor")
     public ResponseEntity<?> getDoctorLists(@RequestParam(value = "_limit", required = false) Integer perPage
-            , @RequestParam(value = "_page", required = false) Integer page)
-            /*, @RequestParam(value = "name", required = false) String name)*/ {
-        perPage = perPage == null ? 3 : perPage;
+            , @RequestParam(value = "_page", required = false) Integer page) {
+        perPage = perPage == null ? 20 : perPage;
         page = page == null ? 1 : page;
         Page<Doctor> pageOutput;
-        /*if (name == null) {*/
-            pageOutput = doctorService.getDoctors(perPage, page);
-        /*} else {
-            pageOutput = doctorService.getDoctors(name, PageRequest.of(page - 1, perPage));
-        }*/
+        pageOutput = doctorService.getDoctors(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
 
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
@@ -43,7 +38,7 @@ public class DoctorController {
 
     }
 
-    /*@GetMapping("doctor/{id}")
+    @GetMapping("doctor/{id}")
     public ResponseEntity<?> getDoctor(@PathVariable("id") Long id) {
         Doctor output = doctorService.getDoctor(id);
         if (output != null) {
@@ -51,7 +46,7 @@ public class DoctorController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
-    }*/
+    }
 
     @PostMapping("/comment")
     public ResponseEntity<?> addComment(@RequestBody Comment comment) throws IndexOutOfBoundsException {

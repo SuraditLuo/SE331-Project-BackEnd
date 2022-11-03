@@ -14,4 +14,6 @@ public interface DoctorService {
 
     Doctor save(Doctor doctor);
     /*Page<Doctor> getDoctors(String name, Pageable pageable);*/
+
+    void removeDoctor(Long id);
 }

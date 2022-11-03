@@ -72,8 +72,8 @@ public class User {
     private List<Authority> authorities = new ArrayList<>();
     @ElementCollection
     List<String> imageUrls;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.REMOVE)
     Doctor doctor;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.REFRESH)
     Patient patient;
 }

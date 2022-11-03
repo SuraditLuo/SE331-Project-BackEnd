@@ -30,6 +30,7 @@ import se331.rest.security.repository.AuthorityRepository;
 import se331.rest.security.repository.UserRepository;
 import se331.rest.security.service.UserService;
 import se331.rest.security.util.JwtTokenUtil;
+import se331.rest.service.DoctorService;
 import se331.rest.util.ProjectMapper;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,8 @@ public class AuthenticationRestController {
     AuthorityRepository authorityRepository;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    DoctorService doctorService;
     @Autowired
     UserService userService;
     @Autowired
@@ -143,9 +146,9 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("/remove-doctor-role")
-    public ResponseEntity<?> removeDoctor(@RequestBody User user) {
-        User output = userService.removeDoctor(user);
-        return ResponseEntity.ok(ProjectMapper.INSTANCE.getUserDTO(output));
+    public ResponseEntity<?> removeDoctorRole(@RequestBody Doctor doctor) {
+        doctorService.removeDoctor(doctor.getId());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("user")

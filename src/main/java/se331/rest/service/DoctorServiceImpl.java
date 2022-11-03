@@ -10,6 +10,12 @@ import se331.rest.entity.Doctor;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Vaccine;
+import se331.rest.repository.DoctorRepository;
+import se331.rest.security.dao.AuthorityDao;
+import se331.rest.security.dao.UserDao;
+import se331.rest.security.entity.User;
+import se331.rest.security.repository.AuthorityRepository;
+import se331.rest.security.repository.UserRepository;
 
 import javax.transaction.Transactional;
 
@@ -17,6 +23,16 @@ import javax.transaction.Transactional;
 public class DoctorServiceImpl implements DoctorService{
     @Autowired
     DoctorDao doctorDao;
+    @Autowired
+    DoctorRepository doctorRepository;
+
+    @Autowired
+    AuthorityDao authorityDao;
+
+    @Autowired
+    UserDao userDao;
+    @Autowired
+    UserRepository userRepository;
     @Override
     public Integer getDoctorSize() {
         return doctorDao.getDoctorSize();
@@ -37,9 +53,12 @@ public class DoctorServiceImpl implements DoctorService{
     public Doctor save(Doctor doctor) {
         return doctorDao.save(doctor);
     }
-
-    /*@Override
-    public Page<Doctor> getDoctors(String name, Pageable pageable) {
-        return doctorDao.getDoctors(name,pageable);
-    }*/
+    @Override
+    @Transactional
+    public void removeDoctor(Long id) {
+        User u = doctorDao.getDoctors(id).getUser();
+        u.getAuthorities().removeIf( e -> authorityDao.getAuthority(03L).equals(e));
+        doctorRepository.deleteById(id);
+        userRepository.save(u);
+    }
 }

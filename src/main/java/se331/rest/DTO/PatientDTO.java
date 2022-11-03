@@ -23,5 +23,4 @@ public class PatientDTO {
     PatientDoctorDTO doctor;
     List<PatientCommentDTO> comments;
     List<PatientVaccineDTO> vaccines;
-    List<String> imageUrls;
 }

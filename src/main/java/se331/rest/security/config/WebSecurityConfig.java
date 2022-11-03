@@ -44,6 +44,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET,"/vaccines").permitAll()
                 .antMatchers(HttpMethod.GET,"/patient/{id}").hasRole("DOCTOR")
                 .antMatchers(HttpMethod.GET,"/patient/{id}").hasRole("PATIENT")
+                .antMatchers(HttpMethod.GET,"/doctor/{id}").hasRole("DOCTOR")
                 .antMatchers(HttpMethod.GET,"/doctor").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/user").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()

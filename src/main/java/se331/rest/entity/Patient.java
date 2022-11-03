@@ -23,7 +23,7 @@ public class Patient {
     String age;
     String address;
     String status;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     Doctor doctor;
     @OneToMany(mappedBy = "commentTo")
     @Builder.Default
@@ -31,9 +31,7 @@ public class Patient {
     @ManyToMany
     @Builder.Default
     List<Vaccine> vaccines = new ArrayList<>();
-    @ElementCollection
-    List<String> imageUrls;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.ALL)
     User user;
 
 }
