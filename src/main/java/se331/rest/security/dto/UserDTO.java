@@ -13,6 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
     String username;
+    String firstname;
+    String lastname;
     String email;
+    String address;
+    String age;
     List<AuthorityDTO> authorities;
 }

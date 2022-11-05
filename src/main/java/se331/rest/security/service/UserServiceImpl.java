@@ -49,6 +49,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUser(Long id) {
+        return userDao.getUser(id);
+    }
+
+    @Override
     @Transactional
     public User saveDoctorRole(User user) {
         Authority authority = authorityDao.getAuthority(03L);

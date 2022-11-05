@@ -2,6 +2,7 @@ package se331.rest.security.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import se331.rest.entity.Doctor;
 import se331.rest.security.entity.Authority;
 import se331.rest.security.entity.User;
 
@@ -14,4 +15,5 @@ public interface UserService {
     User saveDoctorRole(User user);
 
     User savePatientRole(User user);
+    public User getUser(Long id);
 }
