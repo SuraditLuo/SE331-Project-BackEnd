@@ -51,10 +51,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         v5 = vaccineRepository.save(Vaccine.builder()
                 .name("Johnson & Johnson").build());
         Doctor d1, d2, d3;
-        d1 = doctorRepository.save(Doctor.builder()
-                .firstname("admin")
-                .lastname("admin")
-                .build());
         d3 = doctorRepository.save(Doctor.builder()
                 .firstname("doctor")
                 .lastname("doctor")
@@ -64,8 +60,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .lastname("Jack")
                 .build());
         addUser();
-        d1.setUser(user1);
-        user1.setDoctor(d1);
         d2.setUser(user5);
         user5.setDoctor(d2);
         d3.setUser(user3);
@@ -93,8 +87,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build());
         tempPatient.getVaccines().add(v3);
         tempPatient.getVaccines().add(v5);
-        d1.getInCharge().add(tempPatient);
-        tempPatient.setDoctor(d1);
+        d2.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d2);
         tempPatient.setUser(user14);
         user14.setPatient(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
@@ -130,8 +124,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build());
         tempPatient.getVaccines().add(v4);
         tempPatient.getVaccines().add(v4);
-        d1.getInCharge().add(tempPatient);
-        tempPatient.setDoctor(d1);
+        d3.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d3);
         tempPatient.setUser(user17);
         user17.setPatient(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
@@ -140,7 +134,8 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
                 .age(user4.getAge())
                 .address(user4.getAddress())
                 .build());
-        d2.getInCharge().add(tempPatient);
+        d3.getInCharge().add(tempPatient);
+        tempPatient.setDoctor(d3);
         tempPatient.setUser(user4);
         user4.setPatient(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
@@ -445,7 +440,6 @@ public class initApp implements ApplicationListener<ApplicationReadyEvent> {
         authorityRepository.save(authPatient);
         user1.getAuthorities().add(authUser);
         user1.getAuthorities().add(authAdmin);
-        user1.getAuthorities().add(authDoctor);
         user2.getAuthorities().add(authUser);
         user3.getAuthorities().add(authUser);
         user3.getAuthorities().add(authDoctor);
